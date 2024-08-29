@@ -1,0 +1,70 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; /* 상단 정렬 */
+    height: 100vh;
+    margin: 0;
+    background-color: #f0f0f0;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 80%; /* 전체 너비의 80% */
+}
+
+.camera-box {
+    width: 100%;
+    max-width: 600px; /* 최대 너비 설정 */
+    margin-bottom: 20px; /* 아래 여백 */
+}
+
+.camera-image {
+    width: 100%; /* 이미지 너비 100% */
+    border: 2px solid #007bff; /* 테두리 색상 */
+    border-radius: 10px; /* 모서리 둥글게 */
+}
+
+.speed-box {
+    margin-bottom: 20px; /* 아래 여백 */
+    font-size: 1.5em; /* 글자 크기 */
+}
+
+.map-box {
+    width: 100%;
+    max-width: 600px; /* 최대 너비 설정 */
+    height: 400px; /* 높이 설정 */
+    background-color: #e0e0e0; /* 맵 박스 배경색 */
+    border: 2px solid #007bff; /* 테두리 색상 */
+    border-radius: 10px; /* 모서리 둥글게 */
+    margin-bottom: 20px; /* 아래 여백 */
+}
+
+.controls {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* 중앙 정렬 */
+}
+
+.horizontal-controls {
+    display: flex;
+    justify-content: center; /* 수평 중앙 정렬 */
+}
+
+.arrow-button {
+    width: 50px; /* 버튼 너비 */
+    height: 50px; /* 버튼 높이 */
+    margin: 5px; /* 여백 */
+    font-size: 1.5em; /* 글자 크기 */
+    cursor: pointer; /* 커서 변경 */
+    background-color: #007bff; /* 버튼 배경색 */
+    color: white; /* 버튼 글자색 */
+    border: none; /* 테두리 없음 */
+    border-radius: 5px; /* 모서리 둥글게 */
+}
+
+.arrow-button:hover {
+    background-color: #0056b3; /* 버튼 호버 시 색상 변경 */
+}
+

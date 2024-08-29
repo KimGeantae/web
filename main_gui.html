@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>대시보드</title>
+    <link rel="stylesheet" href="/main.css"> <!-- CSS 파일 링크 -->
+</head>
+<body>
+    <div class="container">
+        <div class="camera-box">
+            <img src="camera-image.jpg" alt="카메라 이미지" class="camera-image"> <!-- 카메라 이미지 -->
+        </div>
+        <div class="speed-box">
+            <p>속도: <span id="speed">0 km/h</span></p> <!-- 속도 표시 -->
+        </div>
+        <div class="map-box">
+            <p>맵</p>
+            <div id="map"></div> <!-- 맵을 표시할 박스 -->
+        </div>
+        <div class="controls">
+            <button class="arrow-button">↑</button>
+            <div class="horizontal-controls">
+                <button class="arrow-button">←</button>
+                <button class="arrow-button">→</button>
+            </div>
+            <button class="arrow-button">↓</button>
+        </div>
+    </div>
+</body>
+</html>
+<script>
+    let speed = 0;
+
+    // 예시: 1초마다 속도 증가
+    setInterval(() => {
+        speed += 0.1; // 속도 증가
+        document.getElementById('speed').innerText = speed + ' km/h'; // 속도 표시 업데이트
+    }, 1000);
+</script>
+
+
