@@ -71,12 +71,11 @@
         });
 
         // Map 정보 표시
-        const gridClient = new ROS3D.OccupancyGridClient({
+        const markerClient = new ROS3D.MarkerClient({
             ros: ros,
-            rootObject: viewer.scene,
             tfClient: tfClient,
-            continuous: true,
-            topic: '/map' // 사용할 map 토픽 이름
+            topic: '/tf', // TF 토픽 이름
+            rootObject: viewer.scene
         });
 
         // 속도 증가 함수
