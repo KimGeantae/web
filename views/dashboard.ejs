@@ -9,32 +9,47 @@
 <body>
     <div class="container">
         <div class="camera-box">
-            <img src="camera-image.jpg" alt="카메라 이미지" class="camera-image"> <!-- 카메라 이미지 -->
+            <img src="camera-image.jpg" alt="Camera Image" class="camera-image"> <!-- 카메라 이미지 -->
         </div>
-        <div class="speed-box">
-            <p>속도: <span id="speed">0 km/h</span></p> <!-- 속도 표시 -->
+        <div class="Check speed">
+            <p>Speed: <span id="speed">0.0 km/h</span></p> <!-- 속도 표시 -->
         </div>
-        <div class="map-box">
+        <div class="global map">
             <p>맵</p>
             <div id="map"></div> <!-- 맵을 표시할 박스 -->
         </div>
         <div class="controls">
-            <button class="arrow-button">↑</button>
+            <button class="arrow-button" id="increase-speed">↑</button>
             <div class="horizontal-controls">
                 <button class="arrow-button">←</button>
                 <button class="arrow-button">→</button>
             </div>
-            <button class="arrow-button">↓</button>
+            <button class="arrow-button" id="decrease-speed">↓</button>
         </div>
     </div>
     <script>
-        let speed = 0;
+        let speed = 0.0;
 
-        // 예시: 1초마다 속도 증가
-        setInterval(() => {
-            speed += 5; // 속도 증가
-            document.getElementById('speed').innerText = speed + ' km/h'; // 속도 표시 업데이트
-        }, 1000);
+        // 속도 증가 함수
+        function increaseSpeed() {
+            speed += 0.1; // 속도 증가
+            updateSpeedDisplay();
+        }
+
+        // 속도 감소 함수
+        function decreaseSpeed() {
+            speed -= 0.1; // 속도 감소
+            updateSpeedDisplay();
+        }
+
+        // 속도 표시 업데이트 함수
+        function updateSpeedDisplay() {
+            document.getElementById('speed').innerText = speed.toFixed(1) + ' km/h';
+        }
+
+        // 버튼 클릭 이벤트 리스너 추가
+        document.getElementById('increase-speed').addEventListener('click', increaseSpeed);
+        document.getElementById('decrease-speed').addEventListener('click', decreaseSpeed);
     </script>
 </body>
 </html>
