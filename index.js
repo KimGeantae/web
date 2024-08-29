@@ -26,7 +26,11 @@ app.post('/login', (req, res) => {
     if (id === '12345' && password === 'hi') {
         res.redirect('/success');
     } else {
-        res.send('로그인 실패: ID 또는 비밀번호가 잘못되었습니다.');
+        res.send(<script>
+                alert('사원번호와 패스워드를 다시 확인해주세요');
+                window.location.href = '/';
+            </script>
+        `);
     }
 });
 
