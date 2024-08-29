@@ -32,7 +32,7 @@ app.post('/login', (req, res) => {
 
 // 성공 페이지 라우트
 app.get('/success', (req, res) => {
-    res.send('dashboard');
+    res.render('dashboard');
 });
 
 // 서버 시작
