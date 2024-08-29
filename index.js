@@ -26,10 +26,16 @@ app.post('/login', (req, res) => {
     if (id === '12345' && password === 'hi') {
         res.redirect('/success');
     } else {
-        res.send(<script>
-                alert('사원번호와 패스워드를 다시 확인해주세요');
-                window.location.href = '/';
-            </script>
+        // HTML 문자열로 JavaScript 팝업 창 표시
+        res.send(`
+            <html>
+                <body>
+                    <script>
+                        alert('사원번호와 패스워드를 다시 확인해주세요');
+                        window.location.href = '/';
+                    </script>
+                </body>
+            </html>
         `);
     }
 });
