@@ -1,0 +1,50 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* 화면 전체 높이 */
+    margin: 0;
+    background-color: #f0f0f0; /* 배경색 */
+}
+
+.container {
+    border: 2px solid #007bff; /* 테두리 색상 */
+    border-radius: 10px; /* 모서리 둥글게 */
+    padding: 20px; /* 안쪽 여백 */
+    background-color: white; /* 배경색 */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* 그림자 효과 */
+}
+
+h1 {
+    text-align: center; /* 제목 중앙 정렬 */
+}
+
+form {
+    display: flex;
+    flex-direction: column; /* 세로 방향으로 정렬 */
+}
+
+label {
+    margin-bottom: 5px; /* 라벨과 입력창 사이 여백 */
+}
+
+input {
+    margin-bottom: 15px; /* 입력창 사이 여백 */
+    padding: 10px; /* 입력창 안쪽 여백 */
+    border: 1px solid #ccc; /* 입력창 테두리 */
+    border-radius: 5px; /* 입력창 모서리 둥글게 */
+}
+
+button {
+    padding: 10px; /* 버튼 안쪽 여백 */
+    background-color: #007bff; /* 버튼 배경색 */
+    color: white; /* 버튼 글자색 */
+    border: none; /* 버튼 테두리 없음 */
+    border-radius: 5px; /* 버튼 모서리 둥글게 */
+    cursor: pointer; /* 마우스 커서 변경 */
+}
+
+button:hover {
+    background-color: #0056b3; /* 버튼 호버 시 색상 변경 */
+}
+
