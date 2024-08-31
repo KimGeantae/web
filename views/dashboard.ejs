@@ -52,41 +52,46 @@
         ros.on('close', function() {
             console.log('Connection to websocket server closed.');
         });
-
+	
+	const webcamImage = document.getElementById('camera-stream');
+	
         // 이미지 구독
         const imageTopic = new ROSLIB.Topic({
             ros: ros,
-            name: '/aruco_image', // 구독할 이미지 토픽
-            messageType: 'sensor_msgs/msg/Image' // 메시지 타입
+            name: '/webcam/image_processed', // 구독할 이미지 토픽
+            messageType: 'std_msgs/String' // 메시지 타입
         });
 
         // 이미지 수신 시 처리
-        imageTopic.subscribe(function(message) {
-            const bgrData = new Uint8Array(message.data); // BGR8 이미지 데이터
-            const width = message.width; // 이미지 너비
-            const height = message.height; // 이미지 높이
+        //imageTopic.subscribe(function(message) {
+        //    const bgrData = new Uint8Array(message.data); // BGR8 이미지 데이터
+        //    const width = message.width; // 이미지 너비
+        //    const height = message.height; // 이미지 높이
 
             // BGR8 데이터를 RGB로 변환
-            const rgbData = new Uint8Array(width * height * 3);
-            for (let i = 0; i < bgrData.length; i += 3) {
-                rgbData[i] = bgrData[i + 2];     // R
-                rgbData[i + 1] = bgrData[i + 1]; // G
-                rgbData[i + 2] = bgrData[i];     // B
-            }
+        //    const rgbData = new Uint8Array(width * height * 3);
+        //    for (let i = 0; i < bgrData.length; i += 3) {
+        //       rgbData[i] = bgrData[i + 2];     // R
+        //        rgbData[i + 1] = bgrData[i + 1]; // G
+        //        rgbData[i + 2] = bgrData[i];     // B
+         //   }
 
             // RGB 데이터를 Base64로 인코딩
-            const canvas = document.createElement('canvas');
-            canvas.width = width;
-            canvas.height = height;
-            const ctx = canvas.getContext('2d');
-            const imageData = ctx.createImageData(width, height);
-            imageData.data.set(rgbData);
-            ctx.putImageData(imageData, 0, 0);
+        //    const canvas = document.createElement('canvas');
+        //    canvas.width = width;
+        //    canvas.height = height;
+        //    const ctx = canvas.getContext('2d');
+        //    const imageData = ctx.createImageData(width, height);
+        //    imageData.data.set(rgbData);
+        //    ctx.putImageData(imageData, 0, 0);
 
-            const base64Image = canvas.toDataURL('image/png');
-            document.getElementById('camera-stream').src = base64Image;
-        });
-
+         //   const base64Image = canvas.toDataURL('image/png');
+         //   document.getElementById('camera-stream').src = base64Image;
+        //});
+	imageTopic.subscribe(function(message) {
+		const imageData = 'data:image/jpeg;base64,' + message.data;
+		webcamImage.src = imageData;
+	});
         // RViz 뷰어 생성
         const viewer = new ROS3D.Viewer({
             divID: 'map',
