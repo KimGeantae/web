@@ -79,6 +79,13 @@
             topic: '/map' // 사용할 map 토픽 이름
         });
 
+        // 마커 클라이언트 설정
+        const markerClient = new ROS3D.MarkerClient({
+            ros: ros,
+            rootObject: viewer.scene,
+            topic: '/visualization_marker' // 마커를 받을 토픽
+        });
+
         // 속도 증가 함수
         function increaseSpeed() {
             speed += 0.1; // 속도 증가
@@ -96,7 +103,38 @@
             document.getElementById('speed').innerText = speed.toFixed(1) + ' km/h';
         }
 
+        // TF 변환을 표시할 함수
+        function displayTF() {
+            tfClient.subscribe('/tf', function(tf) {
+                tf.transforms.forEach(transform => {
+                    const position = transform.transform.translation;
+                    const rotation = transform.transform.rotation;
+
+                    // 마커 추가
+                    addMarker(position);
+                });
+            });
+        }
+
+        // 마커 추가 함수
+        function addMarker(position) {
+            const marker = new ROS3D.Arrow({
+                size: 0.1,
+                color: 0x00ff00,
+                pose: {
+                    position: {
+                        x: position.x,
+                        y: position.y,
+                        z: position.z
+                    },
+                    orientation: { x: 0, y: 0, z: 0, w: 1 }
+                }
+            });
+            viewer.scene.add(marker);
+        }
+
         // 버튼 클릭 이벤트 리스너 추가
+        displayTF();
         document.getElementById('increase-speed').addEventListener('click', increaseSpeed);
         document.getElementById('decrease-speed').addEventListener('click', decreaseSpeed);
     </script>
