@@ -57,7 +57,7 @@
         const imageTopic = new ROSLIB.Topic({
             ros: ros,
             name: '/aruco_image', // 구독할 이미지 토픽
-            messageType: 'sensor_msgs/Image' // 메시지 타입
+            messageType: 'sensor_msgs/msg/Image' // 메시지 타입
         });
 
         // 이미지 수신 시 처리
