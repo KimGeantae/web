@@ -62,12 +62,28 @@
 
         // 이미지 수신 시 처리
         imageTopic.subscribe(function(message) {
-            const imgData = message.data; // 이미지 데이터
+            const bgrData = new Uint8Array(message.data); // BGR8 이미지 데이터
             const width = message.width; // 이미지 너비
             const height = message.height; // 이미지 높이
 
-            // Base64로 인코딩하여 이미지 표시
-            const base64Image = 'data:image/jpeg;base64,' + btoa(String.fromCharCode.apply(null, new Uint8Array(imgData)));
+            // BGR8 데이터를 RGB로 변환
+            const rgbData = new Uint8Array(width * height * 3);
+            for (let i = 0; i < bgrData.length; i += 3) {
+                rgbData[i] = bgrData[i + 2];     // R
+                rgbData[i + 1] = bgrData[i + 1]; // G
+                rgbData[i + 2] = bgrData[i];     // B
+            }
+
+            // RGB 데이터를 Base64로 인코딩
+            const canvas = document.createElement('canvas');
+            canvas.width = width;
+            canvas.height = height;
+            const ctx = canvas.getContext('2d');
+            const imageData = ctx.createImageData(width, height);
+            imageData.data.set(rgbData);
+            ctx.putImageData(imageData, 0, 0);
+
+            const base64Image = canvas.toDataURL('image/png');
             document.getElementById('camera-stream').src = base64Image;
         });
 
