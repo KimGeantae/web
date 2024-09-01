@@ -53,7 +53,7 @@
             console.log('Connection to websocket server closed.');
         });
 	
-	const webcamImage = document.getElementById('camera-stream');
+	    const webcamImage = document.getElementById('camera-stream');
 	
         // 이미지 구독
         const imageTopic = new ROSLIB.Topic({
@@ -62,10 +62,10 @@
             messageType: 'std_msgs/String' // 메시지 타입
         });
 
-	imageTopic.subscribe(function(message) {
-		const imageData = 'data:image/jpeg;base64,' + message.data;
-		webcamImage.src = imageData;
-	});
+	    imageTopic.subscribe(function(message) {
+		    const imageData = 'data:image/jpeg;base64,' + message.data;
+		    webcamImage.src = imageData;
+	    });
 
         // RViz 뷰어 생성
         const viewer = new ROS3D.Viewer({
