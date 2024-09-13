@@ -38,7 +38,7 @@
 
         // ROS와 연결
         const ros = new ROSLIB.Ros({
-            url: 'ws://localhost:9090' // rosbridge 서버와 WebSocket 연결
+            url: 'ws://192.168.0.93:9090' // rosbridge 서버와 WebSocket 연결
         });
 
         ros.on('connection', function() {
