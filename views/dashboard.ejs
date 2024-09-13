@@ -59,7 +59,7 @@
         const imageTopic = new ROSLIB.Topic({
             ros: ros,
             name: '/webcam/image_processed', // 구독할 이미지 토픽
-            messageType: 'std_msgs/String' // 메시지 타입
+            messageType: 'std_msgs/msg/String' // 메시지 타입
         });
 
 	    imageTopic.subscribe(function(message) {
